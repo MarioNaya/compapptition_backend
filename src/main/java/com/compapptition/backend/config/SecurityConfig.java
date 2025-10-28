@@ -20,7 +20,6 @@ public class SecurityConfig {
         return http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/login/home").authenticated()
                         .requestMatchers("/login/jugador").hasRole("jugador")
                         .requestMatchers("/login/arbitro").hasRole("arbitro")
                         .requestMatchers("/login/manager").hasRole("manager")

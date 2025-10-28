@@ -7,14 +7,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/login")
+@RequestMapping("/v1")
 @RequiredArgsConstructor
 public class LoginController {
-
-    @GetMapping("/home")
-    public String home(){
-        return "home";
-    }
 
     @GetMapping("/jugador")
     @PreAuthorize("hasRole('jugador')")
