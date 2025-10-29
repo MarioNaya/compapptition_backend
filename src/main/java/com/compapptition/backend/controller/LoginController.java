@@ -11,26 +11,27 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class LoginController {
 
+    @GetMapping("/v1")
+    public String test(){
+        return "Error en el logado. No detectado rol.";
+    }
+
     @GetMapping("/jugador")
-    @PreAuthorize("hasRole('jugador')")
     public String jugador(){
         return "Eres un jugador";
     }
 
     @GetMapping("/arbitro")
-    @PreAuthorize("hasRole('arbitro')")
     public String arbitro(){
         return "Eres un árbitro.";
     }
 
-    @GetMapping("/team_manager")
-    @PreAuthorize("hasRole('manager')")
+    @GetMapping("/manager")
     public String teamAdmin(){
         return "Eres un manager de equipo";
     }
 
     @GetMapping("/admin")
-    @PreAuthorize("hasRole('admin')")
     public String admin(){
         return "Eres un administrador";
     }
