@@ -8,31 +8,41 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "usuarios")
+@Table(name = "competiciones")
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
 @ToString(exclude = {"rolesCompeticion"})
 @EqualsAndHashCode(exclude = {"rolesCompeticion"})
-public class Usuarios {
+public class Competiciones {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, unique = true, length = 50)
-    private String userNombre;
-
     @Column(nullable = false)
-    private  String password;
+    private String competicionNombre;
 
-    @Column(nullable = false, unique = true, length = 100)
-    private String email;
+    @Column(length = 500)
+    private String descripcion;
+
+    @Column(name = "fecha_inicio")
+    private LocalDateTime fechaInicio;
+
+    @Column(name = "fecha_fin")
+    private LocalDateTime fechaFin;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false, length = 20)
+    @Builder.Default
+    private EstadoCompeticion estado = EstadoCompeticion.CREADA;
 
     @Column(nullable = false)
     @Builder.Default
     private Boolean activo = true;
+
+
 
     @Column(name = "created_at", nullable = false, updatable = false)
     @Builder.Default
@@ -41,12 +51,15 @@ public class Usuarios {
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 
-    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "competicion", cascade = CascadeType.ALL, orphanRemoval = true)
     @Builder.Default
     private List<RolCompeticion> rolesCompeticion = new ArrayList<>();
 
-    @PreUpdate
-    protected  void onUpdate(){
-        this.updatedAt = LocalDateTime.now();
+    public enum EstadoCompeticion {
+        CREADA,
+        INSCRIPCIONES_ABIERTAS,
+        EN_CURSO,
+        FINALIZADA,
+        CANCELADA
     }
 }

@@ -1,6 +1,6 @@
 package com.compapptition.backend.service;
 
-import com.compapptition.backend.entity.SecurityUser;
+import com.compapptition.backend.security.SecurityUser;
 import com.compapptition.backend.entity.Usuarios;
 import com.compapptition.backend.repository.UsuariosRepository;
 import lombok.AllArgsConstructor;

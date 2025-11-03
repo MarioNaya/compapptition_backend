@@ -1,12 +1,17 @@
 package com.compapptition.backend.repository;
 
 import com.compapptition.backend.entity.Usuarios;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-@Repository
-public interface UsuariosRepository extends CrudRepository<Usuarios, Long> {
+import java.util.Optional;
 
-    Usuarios findByUserName(String usuario);
+@Repository
+public interface UsuariosRepository extends JpaRepository<Usuarios, Long> {
+
+    Optional<Usuarios> findByUserName(String userName);
+    Optional<Usuarios> findByEmail(String email);
+    boolean existsByUserName(String userName);
+    boolean existsByEmail(String email);
 
 }
