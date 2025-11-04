@@ -1,5 +1,6 @@
 package com.compapptition.backend.entity;
 
+import com.compapptition.backend.user.entity.RolCompeticion;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -22,7 +23,7 @@ public class Competiciones {
     private Long id;
 
     @Column(nullable = false)
-    private String competicionNombre;
+    private String competitionName;
 
     @Column(length = 500)
     private String descripcion;
